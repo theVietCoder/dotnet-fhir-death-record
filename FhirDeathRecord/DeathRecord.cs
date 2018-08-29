@@ -312,16 +312,24 @@ namespace FhirDeathRecord
 
     public class DeathRecord
     {
-        private Bundle _Bundle;
+        public Bundle bundle;
 
         public DeathRecord()
         {
-            _Bundle = new Bundle("");
+            bundle = new Bundle("");
+        }
+
+        public DeathRecord(String record)
+        {
+            // TODO: For now assuming XML string; in future, need to also handle if
+            // given JSON string.
+            XDocument xmlRecord = XDocument.Parse(record);
+            bundle = new Bundle(xmlRecord.Element(FhirNamespace.ns + "Bundle"));
         }
 
         public DeathRecord(XDocument record)
         {
-            _Bundle = new Bundle(record.Element(FhirNamespace.ns + "Bundle"));
+            bundle = new Bundle(record.Element(FhirNamespace.ns + "Bundle"));
         }
 
         public XDocument ToXML()
@@ -329,7 +337,7 @@ namespace FhirDeathRecord
             return new XDocument(
                 new XDeclaration("1.0", "utf-8", String.Empty),
                 new XComment("Death Record"),
-                _Bundle.ToXML()
+                bundle.ToXML()
             );
         }
     }

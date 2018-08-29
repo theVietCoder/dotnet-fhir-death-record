@@ -8,18 +8,25 @@ namespace FhirDeathRecord.Tests
 {
     public class DeathRecord_Should
     {
-        private ArrayList XMLRecords;
-        private ArrayList JSONRecords;
-
+        private DeathRecord XMLRecord;
         private DeathRecord FromScratchRecord;
 
         public DeathRecord_Should()
         {
-            XMLRecords = new ArrayList();
-            XMLRecords.Add(new DeathRecord(File.ReadAllText(FixturePath("fixtures/xml/1.xml"))));
-            JSONRecords = new ArrayList();
-            JSONRecords.Add(new DeathRecord(File.ReadAllText(FixturePath("fixtures/json/1.json"))));
+            XMLRecord = new DeathRecord(File.ReadAllText(FixturePath("fixtures/xml/1.xml")));
             FromScratchRecord = new DeathRecord();
+        }
+
+        [Fact]
+        public void ParsedCorrectBundleId()
+        {
+            Assert.Equal(XMLRecord.bundle.bundleId, "1");
+        }
+
+        [Fact]
+        public void ParsedCorrectType()
+        {
+            Assert.Equal(XMLRecord.bundle.type, "document");
         }
 
         private string FixturePath(string filePath)
