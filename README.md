@@ -6,7 +6,7 @@ This repository includes work-in-progress C# code for producing and consuming th
 ## Project Organization
 
 ### FhirDeathRecord
-This directory contains a FHIR Death Record library for consuming and producing Standard Death Records. This library does not require any external libraries. It will work with any .NET Framework version 3.5 and forward.
+This directory contains a FHIR Death Record library for consuming and producing Standard Death Records. This library does not require any external dependencies. It will work with any .NET Framework version 3.5 and forward.
 
 #### Usage
 You can include the library by referencing it in your project configuration, for example (taken from FhirDeathRecord.CLI):
