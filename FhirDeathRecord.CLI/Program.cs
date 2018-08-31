@@ -23,6 +23,8 @@ namespace csharp_fhir_death_record
                 record.ToXML().Save(writer);
             }
             Console.WriteLine(builder.ToString());
+
+            Console.WriteLine(record.ToJSON())
         }
     }
 }

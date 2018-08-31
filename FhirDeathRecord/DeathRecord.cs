@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Collections;
 using System.Xml.Linq;
+using System.Web.Script.Serialization;
 
 namespace FhirDeathRecord
 {
@@ -339,6 +340,11 @@ namespace FhirDeathRecord
                 new XComment("Death Record"),
                 bundle.ToXML()
             );
+        }
+
+        public string ToJSON()
+        {
+            return new JavaScriptSerializer().Serialize(this);
         }
     }
 
